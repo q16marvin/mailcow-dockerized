@@ -1,8 +1,8 @@
-FROM debian:bullseye-slim
+FROM debian:bookworm-slim
 LABEL maintainer "The Infrastructure Company GmbH GmbH <info@servercow.de>"
 
 ARG DEBIAN_FRONTEND=noninteractive
-ARG CODENAME=bullseye
+ARG CODENAME=bookworm
 ENV LC_ALL C
 
 RUN apt-get update && apt-get install -y \
@@ -11,7 +11,8 @@ RUN apt-get update && apt-get install -y \
   gnupg2 \
   apt-transport-https \
   dnsutils \
-  netcat \
+  netcat-traditional \
+  lua-cjson \
   && apt-key adv --fetch-keys https://rspamd.com/apt-stable/gpg.key \
   && echo "deb https://rspamd.com/apt-stable/ $CODENAME main" > /etc/apt/sources.list.d/rspamd.list \
   && apt-get update \
